@@ -22,12 +22,14 @@ class SpellDetailScreen extends Component {
     this.handleChangeName = this.handleChangeName.bind(this)
     this.deleteTrigger = this.deleteTrigger.bind(this)
     this.handlePositionChange = this.handlePositionChange.bind(this)
+    this.handleTriggerChange = this.handleTriggerChange.bind(this)
   }
   componentDidMount(){
     const { spellId } = this.state
+    this.setState({ isLoading: true })
     Api.getSpellById(spellId)
       .then(spell => {
-        this.setState({ spell })
+        this.setState({ spell, isLoading: false })
       })
       .catch(console.error)
   }
@@ -47,10 +49,13 @@ class SpellDetailScreen extends Component {
             <TriggerEdit
               trigger={(new Trigger(spell.trigger))}
               onDelete={this.deleteTrigger}
+              onTriggerChange={this.handleTriggerChange}
             />
           </div>
           <div className="action-section">
-            <HeaderText>Actions</HeaderText>
+            <div className="action-label">
+              <HeaderText>Actions</HeaderText>
+            </div>
             {
               spell.actions ? (
                 <div className="action-container">
@@ -77,18 +82,29 @@ class SpellDetailScreen extends Component {
   }
   deleteTrigger(){
     const { spell_id } = this.state
+    this.setState({ isLoading: true })
     Api.deleteSpellTrigger(spell_id)
       .then(spell => {
-        this.setState({ spell })
+        this.setState({ spell, isLoading: false })
       })
       .catch(console.error)
   }
   handlePositionChange(actionId, position){
     const { spell } = this.state
     const action = { ...spell.actions[actionId], position }
+    this.setState({ isLoading: true })
     Api.updateSpellAction(spell.id, action)
       .then(spell => {
-        this.setState({ spell })
+        this.setState({ spell, isLoading: false })
+      })
+      .catch(console.error)
+  }
+  handleTriggerChange(trigger){
+    const { spell } = this.state
+    this.setState({ isLoading: true })
+    Api.updateSpellTrigger(spell.id, trigger)
+      .then(spell => {
+        this.setState({ spell, isLoading: false })
       })
       .catch(console.error)
   }

@@ -86,7 +86,7 @@ class Api {
   })
 
   static updateSpellTrigger = (spellId, trigger) => new Promise((resolve, reject) => {
-    Api.request(`${Constants.spellsUrl}/${spellId}/trigger`, 'POST', JSON.stringify({trigger}))
+    Api.request(`${Constants.spellsUrl}/${spellId}/trigger`, 'PUT', JSON.stringify({trigger}))
       .then(resolve)
       .catch(reject)
   })

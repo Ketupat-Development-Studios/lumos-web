@@ -11,6 +11,7 @@ class TriggerEdit extends Component{
   constructor(){
     super()
     this.render_configuration = this.render_configuration.bind(this)
+    this.onTriggerChange = this.onTriggerChange.bind(this)
   }
   render(){
     const { trigger, onDelete } = this.props
@@ -37,11 +38,17 @@ class TriggerEdit extends Component{
         return (
           <ClockConfig
             trigger={trigger}
+            onConfigChange={this.onTriggerChange}
           />
         )
       default:
         return null
     }
+  }
+
+  onTriggerChange(config){
+    const { trigger, onTriggerChange } = this.props
+    onTriggerChange({...trigger, ...config})
   }
 }
 

@@ -13,19 +13,17 @@ import SettingsScreen from 'routes/settings'
 
 const RootRouter = () => (
   <Router>
-    <div>
-      <div className="navigation-bar">
-          <Link to="/">Devices</Link>
-          <Link to="/spells">Spells</Link>
-          <Link to="/settings">Settings</Link>
-      </div>
-
-
+    <div className="app-screen">
       <div className="app-container">
         <Route exact path="/" component={DevicesScreen}/>
         <Route exact path="/spells" component={SpellsScreen}/>
         <Route path="/spells/:spell_id" component={SpellDetailScreen} />
         <Route exact path="/settings" component={SettingsScreen}/>
+      </div>
+      <div className="navigation-bar">
+          <Link to="/">Devices</Link>
+          <Link to="/spells">Spells</Link>
+          <Link to="/settings">Settings</Link>
       </div>
     </div>
   </Router>

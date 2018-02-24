@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import NormalText from 'components/texts/NormalText'
 import PrimaryButton from 'components/buttons/PrimaryButton'
 import MultipleChoice from 'components/inputs/MultipleChoice'
+import './ActionEdit.css'
 
 class ActionEdit extends Component {
   constructor(){

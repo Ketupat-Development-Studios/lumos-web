@@ -20,7 +20,7 @@ export const CLOCK_TIMINGS = (() => {
   let times = [];
   for(let i = 0; i < 24; i++){
     for(let j = 0; j < 4; j++){
-      let time = i + ":" + quarterHours[j];
+      let time = i + quarterHours[j];
       if(i < 10){
         time = "0" + time;
       }

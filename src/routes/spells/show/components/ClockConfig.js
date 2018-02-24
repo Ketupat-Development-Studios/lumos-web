@@ -3,13 +3,15 @@ import MultipleChoice from 'components/inputs/MultipleChoice'
 import { CLOCK_SCHEDULES, CLOCK_TIMINGS } from 'models/Trigger'
 
 class ClockConfig extends Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
-      time: null,
-      schedule: null
+      time: props.trigger.time,
+      schedule: props.trigger.schedule
     }
     this.handleTimeChange = this.handleTimeChange.bind(this)
+    this.handleScheduleChange = this.handleScheduleChange.bind(this)
+    this.onConfigChange = this.onConfigChange.bind(this)
   }
   render(){
     const { time, schedule } = this.state
@@ -25,16 +27,21 @@ class ClockConfig extends Component {
           className="time-picker"
           value={time}
           onChange={this.handleTimeChange}
-          options={CLOCK_TIMINGS}
+          options={CLOCK_TIMINGS.map(t => ({value:t, text:`${t.substr(0, 2)}:${t.substr(2)}`}))}
         />
       </div>
     )
   }
   handleTimeChange(event){
-    this.setState({ time: event.target.value })
+    this.setState({ time: event.target.value }, this.onConfigChange)
   }
   handleScheduleChange(event){
-    this.setState({ schedule: event.target.value })
+    this.setState({ schedule: event.target.value }, this.onConfigChange)
+  }
+  onConfigChange(){
+    const { time, schedule } = this.state
+    const { onConfigChange } = this.props
+    onConfigChange({ time, schedule })
   }
 }
 
