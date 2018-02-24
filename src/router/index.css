@@ -5,9 +5,12 @@
     justify-content: space-between;
     background-color: white;
     overflow: hidden;
-    position: fixed;
+    position: absolute;
     bottom: 0;
-    width: 500px;
+    width: 100%;
+    max-width: 500px;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 /* Style the links inside the navigation bar */
@@ -15,9 +18,9 @@
     float: center;
     align-items: center;
     display: block;
-    color: darkgrey;
+    color: #515151;
     text-align: center;
-    padding: 20px 5%;
+    padding: 20px;
     text-decoration: none;
     font-size: 18px;
 }
@@ -28,9 +31,12 @@
     color: #2377ff;
 }
 
-/* Add a color to the active/current link
-.navigation-bar a.active {
-    background-color: #4CAF50;
+/* Add a color to the active/current link */
+.navigation-bar a:active {
+    background-color: black;
     color: white;
 }
-*/
+
+.app-container {
+    padding-left: 5%;
+}
