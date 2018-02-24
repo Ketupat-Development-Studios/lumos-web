@@ -5,7 +5,11 @@ class Device extends Component {
 	constructor(props) {
 		super(props);
 		const { device } = this.props;
-		this.state = {checkboxState: device.value};
+		var checked = true;
+		if (device.position === "off") {
+			checked = false;
+		}
+		this.state = {checkboxState: checked};
 	}
 
 	toggle(event) {
@@ -17,7 +21,7 @@ class Device extends Component {
 		console.log(device.id)
 		fetch('https://lumos.ketupat.me/actions/', {
 			method: 'POST',
-			mode: 'cors',
+			mode: 'no-cors',
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json',
@@ -47,10 +51,14 @@ fileToSave.send(bboxes);
 
 render(){
 	const { device } = this.props
+	var checked = true;
+	if (device.position === "off") {
+		checked = false;
+	}
 	return (
 		<div className="device">
 		<h3>{device.name}</h3>
-		<input type="checkbox" defaultChecked={device.value} onClick={this.toggle.bind(this)}/>
+		<input type="checkbox" defaultChecked={checked} onClick={this.toggle.bind(this)}/>
 		</div>
 	)
 }
