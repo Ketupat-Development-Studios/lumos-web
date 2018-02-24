@@ -13,6 +13,7 @@ class DeviceScreen extends Component {
   async componentWillMount() {
     const areas = await Api.getAreas()
     const devices = await Api.getDevices()
+    console.log(areas)
     console.log(devices)
     this.setState({ areas, devices })
   }
@@ -23,7 +24,7 @@ class DeviceScreen extends Component {
         <h1>Devices</h1>
         {
           Object.values(areas).map(area => (
-            <Area key={area.id} area={area} devices={devices[area.id]} />
+            <Area key={area.id} area={area} devices={devices[devices.area_id]} />
           ))
         }
       </div>

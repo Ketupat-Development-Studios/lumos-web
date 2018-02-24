@@ -12,6 +12,22 @@ class Api {
     areas = snapshot.val()
     return areas
   }
+  static getAreas = () => new Promise((resolve) => {
+    let devices = null
+    //const snapshot = await firebaseDb.ref('devices/').once('value')
+
+    fetch('https://lumos.ketupat.me/areas/')
+                      .then(response => response.json())
+                      .then(responseJson => {
+                        resolve(responseJson)
+                      })
+                      .catch(console.error)
+    //let data = await snapshot.json()
+
+
+    //devices = snapshot.val()
+    return devices
+  })
   static getDevices = () => new Promise((resolve) => {
     let devices = null
     //const snapshot = await firebaseDb.ref('devices/').once('value')
@@ -28,12 +44,6 @@ class Api {
     //devices = snapshot.val()
     return devices
   })
-  static getDevicesByArea = async (areaId) => {
-    let devices = null
-    const snapshot = await firebaseDb.ref(`/devices/${areaId}/`).once('value')
-    devices = snapshot.val()
-    return devices
-  }
   static toggleSwitch (switchId) {
     // TO-DO
   }
