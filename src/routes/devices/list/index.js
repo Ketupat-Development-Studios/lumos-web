@@ -6,8 +6,8 @@ class DeviceScreen extends Component {
   constructor(){
     super()
     this.state = {
-      areas: {},
-      devices: {},
+      areas: [],
+      devices: [],
     }
   }
   async componentWillMount() {
@@ -23,8 +23,8 @@ class DeviceScreen extends Component {
       <div className="device-screen">
         <h1>Devices</h1>
         {
-          Object.values(areas).map(area => (
-            <Area key={area.id} area={area} devices={devices[devices.area_id]} />
+          areas.map(area => (
+            <Area key={area.id} area={area} devices={devices[area.id]} />
           ))
         }
       </div>

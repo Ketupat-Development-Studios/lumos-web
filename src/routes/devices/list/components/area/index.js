@@ -6,7 +6,7 @@ import Device from '../device'
 const Area = ({ area, devices }) => (
   <div className="area">
     <div className="area-info">
-      <h1>{area.name}</h1>
+      <h2>{area.name}</h2>
     </div>
     <div className="devices">
       {Object.values(devices).map(device => <Device key={device.id} device={device} />)}

@@ -6,7 +6,7 @@ class Device extends Component {
     const { device } = this.props
     return (
       <div className="device">
-        <h2>{device.name}</h2>
+        <h3>{device.name}</h3>
         <input type="checkbox" checked={device.value}/>
       </div>
     )

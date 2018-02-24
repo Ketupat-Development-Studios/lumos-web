@@ -13,7 +13,7 @@ class Api {
     return areas
   }
   static getAreas = () => new Promise((resolve) => {
-    let devices = null
+    let areas = null
     //const snapshot = await firebaseDb.ref('devices/').once('value')
 
     fetch('https://lumos.ketupat.me/areas/')
@@ -26,7 +26,7 @@ class Api {
 
 
     //devices = snapshot.val()
-    return devices
+    return areas
   })
   static getDevices = () => new Promise((resolve) => {
     let devices = null
@@ -44,6 +44,7 @@ class Api {
     //devices = snapshot.val()
     return devices
   })
+
   static toggleSwitch (switchId) {
     // TO-DO
   }
