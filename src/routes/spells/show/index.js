@@ -36,41 +36,43 @@ class SpellDetailScreen extends Component {
   render(){
     const { isLoading, spell } = this.state
     return (
-      <div className="spell-detail-screen">
+      <div>
         <LoadingHeader
           text='Saved'
           loadingText='Saving...'
           isLoading={isLoading}
         />
-        <div className="spell-detail">
-          <TextInput value={spell.name} placeholder="Spell Name" onChange={this.handleChangeName} />
-          <div className="trigger-section">
-            <HeaderText>Trigger</HeaderText>
-            <TriggerEdit
-              trigger={(new Trigger(spell.trigger))}
-              onDelete={this.deleteTrigger}
-              onTriggerChange={this.handleTriggerChange}
-            />
-          </div>
-          <div className="action-section">
-            <div className="action-label">
-              <HeaderText>Actions</HeaderText>
+        <div className="spell-detail-screen">
+          <div className="spell-detail">
+            <TextInput value={spell.name} placeholder="Spell Name" onChange={this.handleChangeName} />
+            <div className="trigger-section">
+              <HeaderText>Trigger</HeaderText>
+              <TriggerEdit
+                trigger={(new Trigger(spell.trigger))}
+                onDelete={this.deleteTrigger}
+                onTriggerChange={this.handleTriggerChange}
+              />
             </div>
-            {
-              spell.actions ? (
-                <div className="action-container">
-                  {
-                    Object.values(spell.actions).map(actionData => (
-                      <ActionEdit
-                        key={actionData.id}
-                        action={(new Action(actionData))}
-                        onPositionChange={this.handlePositionChange}
-                      />
-                    ))
-                  }
-                </div>
-              ) : null
-            }
+            <div className="action-section">
+              <div className="action-label">
+                <HeaderText>Actions</HeaderText>
+              </div>
+              {
+                spell.actions ? (
+                  <div className="action-container">
+                    {
+                      Object.values(spell.actions).map(actionData => (
+                        <ActionEdit
+                          key={actionData.id}
+                          action={(new Action(actionData))}
+                          onPositionChange={this.handlePositionChange}
+                        />
+                      ))
+                    }
+                  </div>
+                ) : null
+              }
+            </div>
           </div>
         </div>
       </div>

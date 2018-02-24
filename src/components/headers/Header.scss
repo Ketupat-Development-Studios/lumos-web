@@ -13,11 +13,13 @@
   position: absolute;
   top:0;
   width: 100%;
+  max-width: $max-width;
   box-sizing: border-box;
 
   .left, .right {
     justify-content: center;
     align-content: center;
     align-items: center;
+    color: #fff;
   }
 }

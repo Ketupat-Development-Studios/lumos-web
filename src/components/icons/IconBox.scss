@@ -1,0 +1,12 @@
+@import "src/lib/Constants.scss";
+
+.area-icon-box {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  background-color: $dark-blue;
+  font-size: $font-size-large;
+}

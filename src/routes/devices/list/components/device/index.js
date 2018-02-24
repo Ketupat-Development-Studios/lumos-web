@@ -7,30 +7,20 @@ import './index.css'
 class Device extends Component {
 	constructor(props) {
 		super(props)
-		this.state = {
-			checkbox: props.device.position === 'off'
-		}
 		this.toggleDeviceState = this.toggleDeviceState.bind(this)
 	}
 
 	toggleDeviceState(event) {
-		const action = this.state.checkbox ? 'off' : 'on';
-		const { device } = this.props
-		Api.setDevicePosition(device.id, action)
-			.then(device => {
-				console.log(device)
-			})
-			.catch(error => {
-				alert(error)
-			})
+		const { device, toggleDeviceState } = this.props
+		toggleDeviceState(device.id)
 	}
 
 	render(){
-		const { device } = this.props
-		const { checkbox } = this.state
+		const { device, onClick } = this.props
+		const checkbox = device.position === 'on'
 		return (
 			<div className="device">
-				<NormalText>{device.name}</NormalText>
+				<NormalText onClick={onClick}>{device.name}</NormalText>
 				<Toggle
 					checked={checkbox}
 					icons={false}

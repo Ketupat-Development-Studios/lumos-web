@@ -10,10 +10,16 @@ class DeviceScreen extends Component {
     this.state = {
       areas: [],
       devices: [],
+      isLoading: false
     }
     this.handleAddDevice = this.handleAddDevice.bind(this)
+    this.openAreaDetail = this.openAreaDetail.bind(this)
+    this.handleToggleDevice = this.handleToggleDevice.bind(this)
   }
   async componentWillMount() {
+    await this.fetchData()
+  }
+  async fetchData(){
     const areas = await Api.getAreas()
     const devices = await Api.getDevices()
     this.setState({ areas, devices })
@@ -31,7 +37,13 @@ class DeviceScreen extends Component {
           <div className="container">
             {
               areas.map(area => (
-                <Area key={area.id} area={area} devices={devices} />
+                <Area
+                  key={area.id}
+                  area={area}
+                  devices={devices}
+                  onClick={this.openAreaDetail}
+                  toggleDeviceState={this.handleToggleDevice}
+                />
               ))
             }
           </div>
@@ -41,6 +53,23 @@ class DeviceScreen extends Component {
   }
   handleAddDevice(){
     // direct to add device page
+  }
+  openAreaDetail(areaId){
+    window.location.href = `/areas/${areaId}`
+  }
+  handleToggleDevice(deviceId){
+    const { devices } = this.state
+    const device = devices.filter(d => d.id === deviceId)[0]
+    device.position = device.position === 'on' ? 'off' : 'on'
+    this.setState({ isLoading: true })
+    Api.setDevicePosition(deviceId, device.position)
+      .then(() => {
+        this.setState({ isLoading: false })
+      })
+      .catch(err => {
+        this.fetchData()
+        alert(err)
+      })
   }
 }
 

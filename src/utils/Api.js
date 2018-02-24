@@ -40,40 +40,34 @@ class Api {
         reject(err)
       })
   })
-  static getAreas = async () => {
-    let areas = null
-    // const snapshot = await firebaseDb.ref('areas/').once('value')
-    //areas = snapshot.val()
-    return areas
-  }
-  static getAreas = () => new Promise((resolve) => {
-    let areas = null
-    //const snapshot = await firebaseDb.ref('devices/').once('value')
 
-    fetch('https://lumos.ketupat.me/areas/')
-                      .then(response => response.json())
-                      .then(responseJson => {
-                        resolve(responseJson)
-                      })
-                      .catch(console.error)
-    return areas
+  static getAreas = () => new Promise((resolve, reject) => {
+    Api.request(Constants.areasUrl)
+      .then(resolve)
+      .catch(reject)
   })
-  static getDevices = () => new Promise((resolve) => {
-    let devices = null
-    //const snapshot = await firebaseDb.ref('devices/').once('value')
-    //https://lumos.ketupat.me/devices/ ; https://api.github.com/
-    fetch('https://lumos.ketupat.me/devices/')
-                      .then(response => response.json())
-                      .then(responseJson => {
-                        resolve(responseJson)
-                      })
-                      .catch(console.error)
-    return devices
+
+  static getAreaById = areaId => Api.request(`${Constants.areasUrl}/${areaId}`)
+
+  static updateArea = (areaId, name) => 
+    Api.request(`${Constants.areasUrl}/${areaId}`, METHODS.PATCH, JSON.stringify({ name }))
+
+  static getDevices = () => new Promise((resolve, reject) => {
+    Api.request(Constants.devicesUrl)
+      .then(resolve)
+      .catch(reject)
   })
+
+  static updateDevice = (deviceId, name) => 
+    Api.request(`${Constants.devicesUrl}/${deviceId}`, METHODS.PATCH, JSON.stringify({ name }))
+
+  static deleteDevice = deviceId => Api.request(`${Constants.devicesUrl}/${deviceId}`, METHODS.DELETE)
+
+  static getDeviceById = deviceId => Api.request(`${Constants.devicesUrl}/${deviceId}`)
 
   static setDevicePosition = (deviceId, position) => new Promise((resolve, reject) => {
     const body = JSON.stringify({ position })
-    Api.request(`${Constants.devicesUrl}/${deviceId}/action`, 'POST', body)
+    Api.request(`${Constants.devicesUrl}/${deviceId}/action`, METHODS.POST, body)
       .then(resolve)
       .catch(reject)
   })
@@ -91,19 +85,19 @@ class Api {
   })
 
   static updateSpellTrigger = (spellId, trigger) => new Promise((resolve, reject) => {
-    Api.request(`${Constants.spellsUrl}/${spellId}/trigger`, 'PUT', JSON.stringify({trigger}))
+    Api.request(`${Constants.spellsUrl}/${spellId}/trigger`, METHODS.PUT, JSON.stringify({trigger}))
       .then(resolve)
       .catch(reject)
   })
 
   static deleteSpellTrigger = spellId => new Promise((resolve, reject) => {
-    Api.request(`${Constants.spellsUrl}/${spellId}`, 'DELETE')
+    Api.request(`${Constants.spellsUrl}/${spellId}`, METHODS.DELETE)
       .then(resolve)
       .catch(reject)
   })
 
   static updateSpellAction = (spellId, action) => new Promise((resolve, reject) => {
-    Api.request(`${Constants.spellsUrl}/${spellId}/action`, 'PUT', JSON.stringify({action}))
+    Api.request(`${Constants.spellsUrl}/${spellId}/action`, METHODS.PUT, JSON.stringify({action}))
       .then(resolve)
       .catch(reject)
   })
