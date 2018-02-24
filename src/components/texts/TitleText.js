@@ -1,6 +1,8 @@
 import React from 'react'
 import './TitleText.css'
 
-const TitleText = () => (
-  <span className="title-text" />
+const TitleText = (props) => (
+  <span className={`title-text ${props.className}`}>{props.children}</span>
 )
+
+export default TitleText

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Api from 'utils/Api'
+import NormalText from 'components/texts/NormalText'
 
 class Action extends Component {
   constructor(){
@@ -9,7 +10,7 @@ class Action extends Component {
     const { action } = this.props
     return (
       <div className="action-row">
-          {action.human_readable}
+        <NormalText>{action.human_readable}</NormalText>
       </div>
     )
   }
