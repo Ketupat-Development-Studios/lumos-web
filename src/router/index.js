@@ -4,6 +4,7 @@ import {
   Route,
   Link
 } from 'react-router-dom'
+import './index.css'
 
 import DevicesScreen from 'routes/devices/list'
 import SpellsScreen from 'routes/spells/list'
@@ -13,14 +14,12 @@ const RootRouter = () => (
   <Router>
     <div>
       <div className="navigation-bar">
-        <ul>
-          <li><Link to="/">Devices</Link></li>
-          <li><Link to="/spells">Spells</Link></li>
-          <li><Link to="/settings">Settings</Link></li>
-        </ul>
+          <Link to="/">Devices</Link>
+          <Link to="/spells">Spells</Link>
+          <Link to="/settings">Settings</Link>
       </div>
 
-      <hr/>
+
       <div className="app-container">
         <Route exact path="/" component={DevicesScreen}/>
         <Route path="/spells" component={SpellsScreen}/>
