@@ -7,7 +7,7 @@ const TitleHeader = (props) => (
   <Header
     {...props}
     left={(
-      <TitleText>{props.title}</TitleText>
+      <TitleText className="light-text">{props.title}</TitleText>
     )}
   />
 )

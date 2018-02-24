@@ -4,7 +4,7 @@ import './AddButton.css'
 
 const AddButton = (props) => (
   <div className={`add-button ${props.className}`} onClick={props.onClick}>
-    <FontAwesomeIcon icon="plus-circle" />
+    <FontAwesomeIcon icon="plus-circle" color={props.color} />
   </div>
 )
 

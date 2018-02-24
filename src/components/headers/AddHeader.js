@@ -8,7 +8,7 @@ const AddHeader = (props) => (
     className="add-header"
     {...props}
     right={(
-      <AddButton onClick={props.onAdd} />
+      <AddButton onClick={props.onAdd} color='#fff' />
     )}
   />
 )

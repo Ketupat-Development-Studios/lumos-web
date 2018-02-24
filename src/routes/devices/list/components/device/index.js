@@ -1,66 +1,44 @@
 import React, { Component } from 'react'
+import Toggle from 'react-toggle'
+import Api from 'utils/Api'
+import NormalText from 'components/texts/NormalText'
 import './index.css'
 
 class Device extends Component {
 	constructor(props) {
-		super(props);
-		const { device } = this.props;
-		var checked = true;
-		if (device.position === "off") {
-			checked = false;
+		super(props)
+		this.state = {
+			checkbox: props.device.position === 'off'
 		}
-		this.state = {checkboxState: checked};
+		this.toggleDeviceState = this.toggleDeviceState.bind(this)
 	}
 
-	toggle(event) {
-		this.setState({checkboxState: !this.state.checkboxState});
-		// POST action
-		// send as application/json {device_id :: string, action :: string} action is one of {'on', 'off'}
-		var action = this.state.checkboxState ? 'off' : 'on';
+	toggleDeviceState(event) {
+		const action = this.state.checkbox ? 'off' : 'on';
 		const { device } = this.props
-		console.log(device.id)
-		fetch('https://lumos.ketupat.me/actions/', {
-			method: 'POST',
-			mode: 'no-cors',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				device_id: device.id,
-				action: action,
+		Api.setDevicePosition(device.id, action)
+			.then(device => {
+				console.log(device)
 			})
-		}).then(console.log)
+			.catch(error => {
+				alert(error)
+			})
 	}
 
-
-
-		/*
-		var fileToSave = new XMLHttpRequest();
-		fileToSave.open("POST", '/', true);
-		fileToSave.setRequestHeader("Content-Type", 'text/plain');
-		fileToSave.onreadystatechange = function() {
-		if (fileToSave.readyState == XMLHttpRequest.DONE && fileToSave.status == 200) {
-		// Request finished. Do processing here.
-		alert("Frame " + curFile + " Saved!");
+	render(){
+		const { device } = this.props
+		const { checkbox } = this.state
+		return (
+			<div className="device">
+				<NormalText>{device.name}</NormalText>
+				<Toggle
+					checked={checkbox}
+					icons={false}
+					onChange={this.toggleDeviceState} 
+				/>
+			</div>
+		)
 	}
-}
-fileToSave.send(bboxes);
-*/
-
-render(){
-	const { device } = this.props
-	var checked = true;
-	if (device.position === "off") {
-		checked = false;
-	}
-	return (
-		<div className="device">
-			<h3>{device.name}</h3>
-			<input type="checkbox" defaultChecked={checked} onClick={this.toggle.bind(this)}/>
-		</div>
-	)
-}
 }
 
 export default Device

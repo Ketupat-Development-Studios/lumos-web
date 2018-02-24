@@ -1,11 +1,19 @@
+@import "src/lib/Constants.scss";
+
 .header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-content: center;
   align-items: center;
+  background-color: $dark-black;
   padding-left: 20px;
   padding-right: 20px;
+  height: 50px;
+  position: absolute;
+  top:0;
+  width: 100%;
+  box-sizing: border-box;
 
   .left, .right {
     justify-content: center;

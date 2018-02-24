@@ -28,8 +28,10 @@ class Api {
       .then(response => {
         if(response.status === HTTP_CODES.OK || response.status === HTTP_CODES.BAD_REQUEST){
           return response.json()
+        } else if(response.status === HTTP_CODES.INTERNAL_SERVER_ERROR) {
+          return response.json().then(err => {throw Error(JSON.stringify(err))})
         } else {
-          throw Error(JSON.stringify(response))
+          throw Error(response.statusText)
         }
       })
       .then(responseJson => resolve(responseJson))
@@ -69,9 +71,12 @@ class Api {
     return devices
   })
 
-  static toggleSwitch (switchId) {
-    // TO-DO
-  }
+  static setDevicePosition = (deviceId, position) => new Promise((resolve, reject) => {
+    const body = JSON.stringify({ position })
+    Api.request(`${Constants.devicesUrl}/${deviceId}/action`, 'POST', body)
+      .then(resolve)
+      .catch(reject)
+  })
 
   static getSpells = () => new Promise((resolve, reject) => {
     Api.request(Constants.spellsUrl)

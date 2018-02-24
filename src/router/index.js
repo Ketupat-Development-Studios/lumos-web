@@ -10,6 +10,7 @@ import DevicesScreen from 'routes/devices/list'
 import SpellsScreen from 'routes/spells/list'
 import SpellDetailScreen from 'routes/spells/show'
 import SettingsScreen from 'routes/settings'
+import TriggersScreen from 'routes/triggers/list'
 
 const RootRouter = () => (
   <Router>
