@@ -14,8 +14,14 @@ class Api {
   }
   static getDevices = async () => {
     let devices = null
-    const snapshot = await firebaseDb.ref(`devices/`).once('value')
-    devices = snapshot.val()
+    //const snapshot = await firebaseDb.ref('devices/').once('value')
+    //https://lumos.ketupat.me/devices/ ; https://api.github.com/
+    const snapshot = await fetch('https://lumos.ketupat.me/devices/', {mode:'no-cors'})
+    //let data = await snapshot.json()
+    console.log(await snapshot)
+
+
+    //devices = snapshot.val()
     return devices
   }
   static getDevicesByArea = async (areaId) => {
