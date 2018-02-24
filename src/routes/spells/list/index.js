@@ -27,25 +27,27 @@ class SpellsScreen extends Component {
   render(){
     const { spells } = this.state
     return (
-      <div className="spells-screen">
+      <div>
         <AddHeader
           title="Spells"
           onAdd={this.onAdd}
         />
-        <div className="spells-container">
-          {
-            spells.map(spell_data => {
-              const spell = new Spell(spell_data)
-              return (
-                <SpellComponent
-                  key={spell.id}
-                  spell={spell}
-                  onToggleSpell={this.onToggleSpell}
-                  onClick={this.viewSpellDetail}
-                />
-              )
-            })
-          }
+        <div className="spells-screen">
+          <div className="spells-container">
+            {
+              spells.map(spell_data => {
+                const spell = new Spell(spell_data)
+                return (
+                  <SpellComponent
+                    key={spell.id}
+                    spell={spell}
+                    onToggleSpell={this.onToggleSpell}
+                    onClick={this.viewSpellDetail}
+                  />
+                )
+              })
+            }
+          </div>
         </div>
       </div>
     )
