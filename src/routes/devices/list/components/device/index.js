@@ -24,14 +24,13 @@ class Device extends Component {
 			mode: 'no-cors',
 			headers: {
 				'Accept': 'application/json',
-				'Content-Type': 'application/json',
-
+				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
 				device_id: device.id,
 				action: action,
 			})
-		})
+		}).then(console.log)
 	}
 
 
@@ -57,8 +56,8 @@ render(){
 	}
 	return (
 		<div className="device">
-		<h3>{device.name}</h3>
-		<input type="checkbox" defaultChecked={checked} onClick={this.toggle.bind(this)}/>
+			<h3>{device.name}</h3>
+			<input type="checkbox" defaultChecked={checked} onClick={this.toggle.bind(this)}/>
 		</div>
 	)
 }
