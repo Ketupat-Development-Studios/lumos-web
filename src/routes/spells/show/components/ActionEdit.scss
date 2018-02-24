@@ -1,0 +1,12 @@
+@import "src/lib/Constants.scss";
+
+.action-container {
+
+  .action-edit {
+    padding: 10px;
+
+    .row {
+      justify-content: space-between;
+    }
+  }
+}

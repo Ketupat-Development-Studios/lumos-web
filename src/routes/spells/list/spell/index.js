@@ -14,7 +14,7 @@ class Spell extends Component {
     this.viewDetail = this.viewDetail.bind(this)
   }
   render(){
-    const { spell, onClick } = this.props
+    const { spell } = this.props
     return (
       <div className="spell" onClick={this.viewDetail}>
         <div className="row">

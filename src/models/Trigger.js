@@ -1,7 +1,34 @@
 
-const TRIGGER_TYPES = {
+export const TRIGGER_TYPES = {
   CLOCK: 'clock'
 }
+
+export const CLOCK_SCHEDULES = {
+  every_day: 'Every day',
+  every_monday: 'Every Monday',
+  every_tuesday: 'Every Tuesday',
+  every_wednesday: 'Every Wednesday',
+  every_thursday: 'Every Thursday',
+  every_friday: 'Every Friday',
+  every_saturday: 'Every Saturday',
+  every_sunday: 'Every Sunday',
+  once: 'Once',
+}
+
+export const CLOCK_TIMINGS = (() => {
+  const quarterHours = ["00", "15", "30", "45"]
+  let times = [];
+  for(let i = 0; i < 24; i++){
+    for(let j = 0; j < 4; j++){
+      let time = i + ":" + quarterHours[j];
+      if(i < 10){
+        time = "0" + time;
+      }
+      times.push(time);
+    }
+  }
+  return times
+})()
 
 const TRIGGER_ICONS = {
   clock: "clock"

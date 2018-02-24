@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Header from './Header'
+import './BackHeader.css'
 
 class BackHeader extends Component {
   constructor(){
@@ -11,7 +12,7 @@ class BackHeader extends Component {
       <Header
         {...this.props}
         left={(
-          <a href="#" onClick={this.goBack}>&lt; BACK</a>
+          <a href="#back" className="back-button" onClick={this.goBack}>&lt; BACK</a>
         )}
       />
     )

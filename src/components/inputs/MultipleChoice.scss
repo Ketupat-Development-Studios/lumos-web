@@ -1,0 +1,8 @@
+@import "src/lib/Constants.scss";
+
+select.multiple-choice {
+  padding: 5px;
+  flex-grow: 1;
+  flex-shrink: 1;
+  font-size: $font-size-normal;
+}

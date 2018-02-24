@@ -8,6 +8,7 @@ import './index.css'
 
 import DevicesScreen from 'routes/devices/list'
 import SpellsScreen from 'routes/spells/list'
+import SpellDetailScreen from 'routes/spells/show'
 import SettingsScreen from 'routes/settings'
 
 const RootRouter = () => (
@@ -22,8 +23,9 @@ const RootRouter = () => (
 
       <div className="app-container">
         <Route exact path="/" component={DevicesScreen}/>
-        <Route path="/spells" component={SpellsScreen}/>
-        <Route path="/settings" component={SettingsScreen}/>
+        <Route exact path="/spells" component={SpellsScreen}/>
+        <Route path="/spells/:spell_id" component={SpellDetailScreen} />
+        <Route exact path="/settings" component={SettingsScreen}/>
       </div>
     </div>
   </Router>

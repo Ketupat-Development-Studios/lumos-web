@@ -1,0 +1,9 @@
+@import "src/lib/Constants.scss";
+
+.text-input {
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 1;
+  padding: 5px;
+  font-size: $font-size-normal;
+}

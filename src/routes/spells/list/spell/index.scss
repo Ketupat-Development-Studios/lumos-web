@@ -1,3 +1,5 @@
+@import "src/lib/Constants.scss";
+
 .spell {
   border: 1px solid #000;
   box-sizing: border-box;
@@ -29,11 +31,11 @@
     margin-bottom: 10px;
 
     .trigger-icon {
-      font-size: 2em;
+      font-size: $font-size-huge;
     }
     .trigger-text {
       margin-left: 20px;
-      font-size: 1.5em;
+      font-size: $font-size-normal;
     }
   }
   .actions {

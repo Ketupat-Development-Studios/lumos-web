@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Api from 'utils/Api'
+// import Api from 'utils/Api'
 import NormalText from 'components/texts/NormalText'
 
 class Action extends Component {

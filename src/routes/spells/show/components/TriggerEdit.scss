@@ -1,0 +1,24 @@
+@import "src/lib/Constants.scss";
+
+.trigger-box {
+  margin-top: 10px;
+  padding: 20px;
+  border: 1px solid #000;
+  box-sizing: border-box;
+
+  .title-row {
+    justify-content: flex-start;
+
+    .trigger-icon {
+      font-size: $font-size-icon;
+      margin-right: 20px;
+    }
+  }
+  .configuration {
+    margin-top:20px;
+  }
+  
+  .primary-button {
+    margin-top:10px;
+  }
+}

@@ -1,3 +1,10 @@
-.spell-detail {
-  
+.spell-detail-screen {
+  padding: 20px;
+  .spell-detail {
+    padding-top: 20px;
+
+    .trigger-section {
+      margin-top: 20px;
+    }
+  }
 }

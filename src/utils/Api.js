@@ -19,7 +19,7 @@ const defaultHeaders = {
 }
 
 class Api {
-  static request = (url, method=METHODS.GET, headers=defaultHeaders, body='{}') => new Promise((resolve, reject) => {
+  static request = (url, method=METHODS.GET, body='{}', headers=defaultHeaders) => new Promise((resolve, reject) => {
     const config = { method, headers }
     if(method === METHODS.POST || method === METHODS.PATCH || method === METHODS.PUT){
       config.body = body
@@ -75,6 +75,30 @@ class Api {
 
   static getSpells = () => new Promise((resolve, reject) => {
     Api.request(Constants.spellsUrl)
+      .then(resolve)
+      .catch(reject)
+  })
+
+  static getSpellById = spellId => new Promise((resolve, reject) => {
+    Api.request(`${Constants.spellsUrl}/${spellId}`)
+      .then(resolve)
+      .catch(reject)
+  })
+
+  static updateSpellTrigger = (spellId, trigger) => new Promise((resolve, reject) => {
+    Api.request(`${Constants.spellsUrl}/${spellId}/trigger`, 'POST', JSON.stringify({trigger}))
+      .then(resolve)
+      .catch(reject)
+  })
+
+  static deleteSpellTrigger = spellId => new Promise((resolve, reject) => {
+    Api.request(`${Constants.spellsUrl}/${spellId}`, 'DELETE')
+      .then(resolve)
+      .catch(reject)
+  })
+
+  static updateSpellAction = (spellId, action) => new Promise((resolve, reject) => {
+    Api.request(`${Constants.spellsUrl}/${spellId}/action`, 'PUT', JSON.stringify({action}))
       .then(resolve)
       .catch(reject)
   })

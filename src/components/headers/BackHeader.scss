@@ -1,5 +1,7 @@
 @import "src/lib/Constants.scss";
 
-.normal-text {
+.back-button {
+  text-decoration: none;
+  color: $dark-blue;
   font-size: $font-size-normal;
 }

@@ -61,6 +61,7 @@ class SpellsScreen extends Component {
 
   viewSpellDetail(spellId){
     // view spell detail
+    window.location.href = `/spells/${spellId}`
   }
 }
 
