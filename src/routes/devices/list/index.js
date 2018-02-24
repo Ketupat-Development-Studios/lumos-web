@@ -13,6 +13,7 @@ class DeviceScreen extends Component {
   async componentWillMount() {
     const areas = await Api.getAreas()
     const devices = await Api.getDevices()
+    console.log(devices)
     this.setState({ areas, devices })
   }
   render(){

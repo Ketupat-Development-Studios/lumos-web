@@ -16,12 +16,12 @@ class Api {
     let devices = null
     //const snapshot = await firebaseDb.ref('devices/').once('value')
     //https://lumos.ketupat.me/devices/ ; https://api.github.com/
-    const snapshot = fetch('https://lumos.ketupat.me/devices/', {mode:'no-cors',})
+    fetch('https://lumos.ketupat.me/devices/')
                       .then(response => response.json())
                       .then(responseJson => {
-                        console.log(responseJson)
                         resolve(responseJson)
                       })
+                      .catch(console.error)
     //let data = await snapshot.json()
 
 
