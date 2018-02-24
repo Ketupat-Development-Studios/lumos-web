@@ -1,0 +1,17 @@
+.spell .row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; }
+  .spell .row .spell-name {
+    flex-grow: 1;
+    flex-shrink: 1; }
+  .spell .row .spell-toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+
+.spell .trigger-row .trigger-icon {
+  font-size: 26px; }
+
+.spell .trigger-row .trigger-text {
+  margin-left: 20px; }
