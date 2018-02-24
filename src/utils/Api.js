@@ -22,10 +22,6 @@ class Api {
                         resolve(responseJson)
                       })
                       .catch(console.error)
-    //let data = await snapshot.json()
-
-
-    //devices = snapshot.val()
     return areas
   })
   static getDevices = () => new Promise((resolve) => {
@@ -38,10 +34,6 @@ class Api {
                         resolve(responseJson)
                       })
                       .catch(console.error)
-    //let data = await snapshot.json()
-
-
-    //devices = snapshot.val()
     return devices
   })
 

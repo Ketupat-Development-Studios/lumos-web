@@ -2,28 +2,58 @@ import React, { Component } from 'react'
 import './index.css'
 
 class Device extends Component {
-  constructor(props) {
-    super(props);
-    const { device } = this.props
-    this.state = {checkboxState: device.value};
-  }
+	constructor(props) {
+		super(props);
+		const { device } = this.props;
+		this.state = {checkboxState: device.value};
+	}
 
-  toggle(event) {
-   this.setState({checkboxState: !this.state.checkboxState});
-   
-   // POST action
-   // send as application/json {device_id :: string, action :: string} action is one of {'on', 'off'}
-  }
+	toggle(event) {
+		this.setState({checkboxState: !this.state.checkboxState});
+		// POST action
+		// send as application/json {device_id :: string, action :: string} action is one of {'on', 'off'}
+		var action = this.state.checkboxState ? 'off' : 'on';
+		const { device } = this.props
+		console.log(device.id)
+		fetch('https://lumos.ketupat.me/actions/', {
+			method: 'POST',
+			mode: 'cors',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
 
-  render(){
-    const { device } = this.props
-    return (
-      <div className="device">
-        <h3>{device.name}</h3>
-        <input type="checkbox" defaultChecked={device.value} onClick={this.toggle.bind(this)}/>
-      </div>
-    )
-  }
+			},
+			body: JSON.stringify({
+				device_id: device.id,
+				action: action,
+			})
+		})
+	}
+
+
+
+		/*
+		var fileToSave = new XMLHttpRequest();
+		fileToSave.open("POST", '/', true);
+		fileToSave.setRequestHeader("Content-Type", 'text/plain');
+		fileToSave.onreadystatechange = function() {
+		if (fileToSave.readyState == XMLHttpRequest.DONE && fileToSave.status == 200) {
+		// Request finished. Do processing here.
+		alert("Frame " + curFile + " Saved!");
+	}
+}
+fileToSave.send(bboxes);
+*/
+
+render(){
+	const { device } = this.props
+	return (
+		<div className="device">
+		<h3>{device.name}</h3>
+		<input type="checkbox" defaultChecked={device.value} onClick={this.toggle.bind(this)}/>
+		</div>
+	)
+}
 }
 
 export default Device
