@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+  lumos-web:
+    build: .
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    ports:
+      - "8101:5000"

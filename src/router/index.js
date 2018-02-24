@@ -21,6 +21,7 @@ const RootRouter = () => (
         <Route path="/areas/:areaId" component={DeviceDetailScreen} />
         <Route exact path="/spells" component={SpellsScreen}/>
         <Route path="/spells/:spell_id" component={SpellDetailScreen} />
+        <Route exact path="/triggers" component={TriggersScreen} />
         <Route exact path="/settings" component={SettingsScreen}/>
       </div>
       <div className="navigation-bar">
