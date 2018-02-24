@@ -9,7 +9,7 @@ const Area = ({ area, devices }) => (
       <h2>{area.name}</h2>
     </div>
     <div className="devices">
-      {Object.values(devices).map(device => <Device key={device.id} device={device} />)}
+      {devices.filter(device=>device.area_id===area.id).map(device => <Device key={device.id} device={device} />)}
     </div>
   </div>
 )

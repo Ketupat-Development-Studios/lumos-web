@@ -24,7 +24,7 @@ class DeviceScreen extends Component {
         <h1>Devices</h1>
         {
           areas.map(area => (
-            <Area key={area.id} area={area} devices={devices[area.id]} />
+            <Area key={area.id} area={area} devices={devices} />
           ))
         }
       </div>
