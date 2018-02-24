@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Toggle from 'react-toggle'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import Action from './Action'
 import "react-toggle/style.css"
 import './index.css'
 
@@ -26,7 +27,12 @@ class Spell extends Component {
         </div>
         <div className="trigger-row">
           <FontAwesomeIcon className="trigger-icon" icon="clock" />
-          <span className="trigger-text">{JSON.stringify(spell.trigger)}</span>
+          <span className="trigger-text">{spell.trigger.human_readable}</span>
+        </div>
+        <div className="actions">
+          {
+            spell.actions ? spell.actions.map(action => <Action key={action.id} action={action} /> ) : null
+          }
         </div>
       </div>
     )

@@ -1,12 +1,20 @@
+
 const TRIGGER_TYPES = {
   CLOCK: 'clock'
+}
+
+const TRIGGER_ICONS = {
+  clock: "clock"
 }
 
 class Trigger {
   constructor(triggerData){
     if(triggerData){
-      this.type = triggerData.type
-      handle_trigger_type(triggerData)
+      if(triggerData.hasOwnProperty('type')){
+        this.type = triggerData.type
+        this.icon = TRIGGER_ICONS[this.type]
+        this.handle_trigger_type(triggerData)
+      }
     }
   }
   handle_trigger_type(data){
@@ -15,7 +23,20 @@ class Trigger {
         this.minute = data.minute
         this.schedule = data.schedule
         this.time = data.time
-        return
+        this.human_readable = Trigger.human_readable_clock({
+          schedule: this.schedule,
+          time: this.time,
+          minute: this.minute
+        })
+        break
+      default:
+        break
     }
   }
+
+  static human_readable_clock({ schedule, time, minute }){
+    return `${schedule} at ${time}`
+  }
 }
+
+export default Trigger

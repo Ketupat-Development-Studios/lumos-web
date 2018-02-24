@@ -1,17 +1,32 @@
-.spell .row {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between; }
-  .spell .row .spell-name {
-    flex-grow: 1;
-    flex-shrink: 1; }
-  .spell .row .spell-toggle {
+.spell {
+  border: 1px solid #000;
+  box-sizing: border-box;
+  padding: 10px; }
+  .spell .row {
     display: flex;
-    justify-content: center;
-    align-items: center; }
-
-.spell .trigger-row .trigger-icon {
-  font-size: 26px; }
-
-.spell .trigger-row .trigger-text {
-  margin-left: 20px; }
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 20px; }
+    .spell .row .spell-name {
+      line-height: 0;
+      flex-grow: 1;
+      flex-shrink: 1; }
+    .spell .row .spell-toggle {
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+  .spell .trigger-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: center;
+    margin-bottom: 10px; }
+    .spell .trigger-row .trigger-icon {
+      font-size: 2em; }
+    .spell .trigger-row .trigger-text {
+      margin-left: 20px;
+      font-size: 1.5em; }
+  .spell .actions .action-row {
+    margin-top: 10px;
+    margin-bottom: 10px; }
