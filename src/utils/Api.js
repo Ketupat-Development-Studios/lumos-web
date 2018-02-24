@@ -12,18 +12,22 @@ class Api {
     areas = snapshot.val()
     return areas
   }
-  static getDevices = async () => {
+  static getDevices = () => new Promise((resolve) => {
     let devices = null
     //const snapshot = await firebaseDb.ref('devices/').once('value')
     //https://lumos.ketupat.me/devices/ ; https://api.github.com/
-    const snapshot = await fetch('https://lumos.ketupat.me/devices/', {mode:'no-cors'})
+    const snapshot = fetch('https://lumos.ketupat.me/devices/', {mode:'no-cors',})
+                      .then(response => response.json())
+                      .then(responseJson => {
+                        console.log(responseJson)
+                        resolve(responseJson)
+                      })
     //let data = await snapshot.json()
-    console.log(await snapshot)
 
 
     //devices = snapshot.val()
     return devices
-  }
+  })
   static getDevicesByArea = async (areaId) => {
     let devices = null
     const snapshot = await firebaseDb.ref(`/devices/${areaId}/`).once('value')
