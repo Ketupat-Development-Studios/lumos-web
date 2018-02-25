@@ -48,11 +48,13 @@ class DeviceDetailScreen extends Component {
         <div className="device-detail-screen">
           <div className="area row">
             <IconBox icon={area.icon} />
-            <TextInput
-              value={area.name}
-              placeholder="Area Name"
-              onChange={this.handleChangeName}
-            />
+            <div className="device-input">
+              <TextInput
+                value={area.name}
+                placeholder="Area Name"
+                onChange={this.handleChangeName}
+              />
+            </div>
           </div>
           <div className="devices">
             {
